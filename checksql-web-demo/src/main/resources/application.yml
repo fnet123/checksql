@@ -1,0 +1,27 @@
+# server
+server:
+  port: 8080
+  http2:
+    enabled: true
+  undertow:
+    io-threads: 16
+    worker-threads: 256
+    buffer-size: 1024
+    direct-buffers: true
+
+# spring
+spring:
+  profiles:
+    active: dev
+
+# mybatis-plus
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      table-underline: true
+      db-type: mysql
+      logic-delete-value: 1
+      logic-not-delete-value: 0
