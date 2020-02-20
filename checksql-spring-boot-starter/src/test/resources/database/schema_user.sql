@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users
+(
+    id BIGINT(20) NOT NULL COMMENT 'id',
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT 'name',
+    age INT(11) NULL DEFAULT NULL COMMENT 'age',
+    PRIMARY KEY (id)
+);

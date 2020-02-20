@@ -1,0 +1,54 @@
+# server
+server:
+  port: 8080
+  http2:
+    enabled: true
+  undertow:
+    io-threads: 16
+    worker-threads: 256
+    buffer-size: 1024
+    direct-buffers: true
+
+# spring
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    username: sa
+    password: sa
+    schema-username: sa
+    schema-password: sa
+    data-username: sa
+    data-password: sa
+    schema: classpath:database/schema_*.sql
+    data: classpath:database/data_*.sql
+    initialization-mode: always
+    platform: h2
+  jmx:
+    enabled: false
+
+# log
+logging:
+  level:
+    root: debug
+
+# custom starter configuration
+check-sql:
+  type: nullsql
+
+
+# mybatis-plus
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      table-underline: true
+      db-type: mysql
+      logic-delete-value: 1
+      logic-not-delete-value: 0
