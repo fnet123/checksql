@@ -21,9 +21,9 @@ public class IndexEndpoint {
     @GetMapping({"", "/index"})
     public ResponseEntity<List<SysConfigEntity>> index() {
 
-//        List<SysConfigEntity> list = sysConfigService.list(Wrappers.<SysConfigEntity>lambdaQuery().eq(SysConfigEntity::getVariable, "diagnostics.allow_i_s_tables"));
+        List<SysConfigEntity> list = sysConfigService.list(Wrappers.<SysConfigEntity>lambdaQuery().eq(SysConfigEntity::getVariable, "c"));
 
-        List<SysConfigEntity> list = sysConfigService.list();
+//        List<SysConfigEntity> list = sysConfigService.list();
 
         return ResponseEntity.ok(list);
     }

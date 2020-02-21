@@ -1,0 +1,23 @@
+
+# spring
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sys?useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+    username: root
+    password:
+  jmx:
+    enabled: false
+
+# log
+logging:
+  level:
+    root: debug
+
+# custom starter configuration
+check-sql:
+  return-type: nullValue
+  check-max-join-number: true
+  init-max-join-number: 3
+  check-no-where: true

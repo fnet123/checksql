@@ -1,13 +1,23 @@
 
 # spring
 spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
   datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/sys?useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
-    username: root
-    password:
-
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    username: sa
+    password: sa
+    schema-username: sa
+    schema-password: sa
+    data-username: sa
+    data-password: sa
+    schema: classpath:database/schema_*.sql
+    data: classpath:database/data_*.sql
+    initialization-mode: always
+    platform: h2
   jmx:
     enabled: false
 
@@ -18,7 +28,7 @@ logging:
 
 # custom starter configuration
 check-sql:
-  return-type: nullValue
+  return-type: exception
   check-max-join-number: true
   init-max-join-number: 3
   check-no-where: true
