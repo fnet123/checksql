@@ -48,4 +48,20 @@ public class NoWhereTest extends BaseTest {
         User user = list.get(0);
         Assert.assertEquals("Jone", user.getName());
     }
+
+    @Test
+    public void testListNoWhereManyJoins() {
+        CheckSqlProperties checkSqlProperties = new CheckSqlProperties();
+        checkSqlProperties.setReturnType(CheckSqlTypeEnum.exception.name());
+        checkSqlInterceptor.setCheckSqlProperties(checkSqlProperties);
+        checkSqlProperties.setCheckNoWhere(true);
+        Map<String, Object> columnMap = new HashMap<>();
+        try {
+            List list = userMapper.selectUserInfo();
+            Assert.assertFalse("预期抛异常，实际没有抛", true);
+        } catch (Exception ex) {
+            Throwable throwable = ex.getCause().getCause();
+            Assert.assertEquals(true, throwable instanceof CheckSqlRuntimeException);
+        }
+    }
 }

@@ -14,6 +14,17 @@ public interface UserMapper extends BaseMapper<User> {
             "       s.name as student_name,\n" +
             "       l.grade as lesson_grade,\n" +
             "       m.channel as market_channel\n" +
+            " from users u \n" +
+            "     inner join students s on (s.user_id = u.id) \n" +
+            "     inner join student_lesson_infos l on (l.student_id = s.id) \n" +
+            "     inner join student_market_infos m on (m.student_id = s.id) \n")
+    List<UserInfo> selectUserInfo();
+
+    @Select(" select u.name as user_name,\n" +
+            "       u.age as user_age,\n" +
+            "       s.name as student_name,\n" +
+            "       l.grade as lesson_grade,\n" +
+            "       m.channel as market_channel\n" +
             " from users u,\n" +
             "     students s,\n" +
             "     student_lesson_infos l,\n" +
@@ -21,5 +32,5 @@ public interface UserMapper extends BaseMapper<User> {
             " where s.user_id = u.id\n" +
             "  and l.student_id = s.id\n" +
             "  and m.student_id = s.id ")
-    public List<UserInfo> selectUserInfo();
+    List<UserInfo> selectUserInfoNoJoinOn();
 }
