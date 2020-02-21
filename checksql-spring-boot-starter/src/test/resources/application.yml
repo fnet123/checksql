@@ -38,7 +38,10 @@ logging:
 
 # custom starter configuration
 check-sql:
-  type: nullsql
+  return-type: nullValue
+  check-max-join-number: true
+  init-max-join-number: 3
+  check-no-where: true
 
 
 # mybatis-plus

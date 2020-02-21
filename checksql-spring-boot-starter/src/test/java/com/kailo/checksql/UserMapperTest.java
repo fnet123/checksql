@@ -1,9 +1,8 @@
 package com.kailo.checksql;
 
-import com.kailo.checksql.autoconfigure.CheckSqlAutoConfiguration;
 import com.kailo.checksql.autoconfigure.CheckSqlProperties;
 import com.kailo.checksql.mybatis.CheckSqlTypeEnum;
-import com.kailo.checksql.mybatis.exception.NoWhereRuntimeException;
+import com.kailo.checksql.mybatis.exception.CheckSqlRuntimeException;
 import com.kailo.checksql.mybatis.interceptor.CheckSqlInterceptor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
@@ -37,9 +36,9 @@ public class UserMapperTest {
 
     @Test
     public void testListNoWhereNullSql() {
-        Properties properties = new Properties();
-        properties.setProperty("checkSqlType", CheckSqlTypeEnum.nullSql.name());
-        checkSqlInterceptor.setProperties(properties);
+        CheckSqlProperties checkSqlProperties = new CheckSqlProperties();
+        checkSqlProperties.setReturnType(CheckSqlTypeEnum.nullValue.name());
+        checkSqlInterceptor.setCheckSqlProperties(checkSqlProperties);
         Map<String, Object> columnMap = new HashMap<>();
         List list = userMapper.selectByMap(columnMap);
         List expected = new ArrayList();
@@ -49,20 +48,20 @@ public class UserMapperTest {
 
     @Test
     public void testListNoWhereException() {
-        Properties properties = new Properties();
-        properties.setProperty("checkSqlType", CheckSqlTypeEnum.exception.name());
-        checkSqlInterceptor.setProperties(properties);
+        CheckSqlProperties checkSqlProperties = new CheckSqlProperties();
+        checkSqlProperties.setReturnType(CheckSqlTypeEnum.exception.name());
+        checkSqlInterceptor.setCheckSqlProperties(checkSqlProperties);
         Map<String, Object> columnMap = new HashMap<>();
         try {
             List list = userMapper.selectByMap(columnMap);
         } catch (Exception ex) {
             Throwable throwable = ex.getCause().getCause();
-            Assert.assertEquals(true, throwable instanceof NoWhereRuntimeException);
+            Assert.assertEquals(true, throwable instanceof CheckSqlRuntimeException);
         }
     }
 
     @Test
-    public void testListHashWhere() {
+    public void testListHasWhere() {
         Map<String, Object> columnMap = new HashMap<>();
         columnMap.put("name", "Jone");
         List<User> list = userMapper.selectByMap(columnMap);
