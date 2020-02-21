@@ -36,6 +36,7 @@ public class CheckSqlInterceptor implements Interceptor {
 
         if (!CollectionUtils.isEmpty(checkSqlList)) {
             checkSqlList.stream().forEach(item -> {
+                item.setCheckSqlProperties(checkSqlProperties);
                 if (!item.isCheck()) {
                     return;
                 }

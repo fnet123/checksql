@@ -3,41 +3,20 @@ package com.kailo.checksql;
 import com.kailo.checksql.autoconfigure.CheckSqlProperties;
 import com.kailo.checksql.mybatis.CheckSqlTypeEnum;
 import com.kailo.checksql.mybatis.exception.CheckSqlRuntimeException;
-import com.kailo.checksql.mybatis.interceptor.CheckSqlInterceptor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
 
 @Log4j2
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {ApplicationTest.class, DataSourceAutoConfiguration.class})
-public class UserMapperTest {
-
-    private CheckSqlInterceptor checkSqlInterceptor;
-
-    @Autowired
-    public void setCheckSqlInterceptor(CheckSqlInterceptor checkSqlInterceptor) {
-        this.checkSqlInterceptor = checkSqlInterceptor;
-    }
-
-    private UserMapper userMapper;
-
-    @Autowired(required = false)
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
+public class NoWhereTest extends BaseTest {
 
     @Test
     public void testListNoWhereNullSql() {
         CheckSqlProperties checkSqlProperties = new CheckSqlProperties();
         checkSqlProperties.setReturnType(CheckSqlTypeEnum.nullValue.name());
+        checkSqlProperties.setCheckNoWhere(true);
         checkSqlInterceptor.setCheckSqlProperties(checkSqlProperties);
         Map<String, Object> columnMap = new HashMap<>();
         List list = userMapper.selectByMap(columnMap);
@@ -51,6 +30,7 @@ public class UserMapperTest {
         CheckSqlProperties checkSqlProperties = new CheckSqlProperties();
         checkSqlProperties.setReturnType(CheckSqlTypeEnum.exception.name());
         checkSqlInterceptor.setCheckSqlProperties(checkSqlProperties);
+        checkSqlProperties.setCheckNoWhere(true);
         Map<String, Object> columnMap = new HashMap<>();
         try {
             List list = userMapper.selectByMap(columnMap);
