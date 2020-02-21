@@ -1,8 +1,8 @@
 package com.kailo.checksql;
 
 import com.kailo.checksql.autoconfigure.CheckSqlProperties;
-import com.kailo.checksql.mybatis.CheckSqlTypeEnum;
-import com.kailo.checksql.mybatis.exception.CheckSqlRuntimeException;
+import com.kailo.checksql.mybatis.enums.CheckSqlTypeEnum;
+import com.kailo.checksql.mybatis.enums.exception.CheckSqlRuntimeException;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Test;

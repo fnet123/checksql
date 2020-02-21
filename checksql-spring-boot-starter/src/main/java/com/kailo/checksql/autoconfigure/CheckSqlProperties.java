@@ -1,10 +1,8 @@
 package com.kailo.checksql.autoconfigure;
 
-import com.kailo.checksql.mybatis.CheckSqlTypeEnum;
+import com.kailo.checksql.mybatis.enums.CheckSqlTypeEnum;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import java.util.Properties;
 
 /**
  * CheckSql Properties

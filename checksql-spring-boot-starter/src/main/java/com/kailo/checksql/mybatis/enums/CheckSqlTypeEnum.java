@@ -1,4 +1,4 @@
-package com.kailo.checksql.mybatis;
+package com.kailo.checksql.mybatis.enums;
 
 public enum CheckSqlTypeEnum {
 

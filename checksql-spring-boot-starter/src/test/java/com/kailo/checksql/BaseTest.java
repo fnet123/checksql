@@ -1,7 +1,6 @@
 package com.kailo.checksql;
 
-import com.kailo.checksql.mybatis.interceptor.CheckSqlInterceptor;
-import lombok.extern.log4j.Log4j2;
+import com.kailo.checksql.mybatis.enums.interceptor.CheckSqlInterceptor;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
