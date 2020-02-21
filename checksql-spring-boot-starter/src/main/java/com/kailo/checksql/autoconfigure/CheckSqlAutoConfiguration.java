@@ -1,7 +1,7 @@
 package com.kailo.checksql.autoconfigure;
 
 import com.kailo.checksql.component.CheckSql;
-import com.kailo.checksql.mybatis.enums.interceptor.CheckSqlInterceptor;
+import com.kailo.checksql.mybatis.interceptor.CheckSqlInterceptor;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
